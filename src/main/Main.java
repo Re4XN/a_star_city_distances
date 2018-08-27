@@ -42,7 +42,7 @@ public class Main {
 		List<Pixel> path = crawler.search();
 		
 		for(Pixel pixel : path) {
-			System.out.println(pixel);
+			//System.out.println(pixel);
 			map.getWorldmap().setRGB(pixel.getX(), pixel.getY(), new Color(255, 0, 110).getRGB());
 		}
 		
@@ -54,7 +54,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		System.out.println(path.size() * map.getPixelDistance() + " km");
+		System.out.println(path.size());
 	}
 
 }

@@ -73,6 +73,7 @@ public class AStar {
 		Set<Pixel> closedPixels = new HashSet<>();
 		
 		Queue<Pixel> openPixels = new PriorityQueue<>(new PixelComparator());
+		this.start.calculateHeuristic(this.goal);
 		this.start.calculateF(this.goal);
 		openPixels.add(this.start);
 		
@@ -80,6 +81,8 @@ public class AStar {
 			Pixel current = openPixels.poll();
 			this.worldmap.setPixelTerrain(current);
 
+			System.out.println("WHILE LOOP: " + current.getCost());
+			
 			if(isFinished(current, this.goal))
 				return getPath(current);
 			
@@ -95,7 +98,10 @@ public class AStar {
 					continue;
 				
 				this.worldmap.setPixelTerrain(next);
+				
+				System.out.println("FOR LOOP:" + current.getCost() + " + " + next.getCost());
 				next.setCost(current.getCost() + next.getCost());
+				
 				next.calculateHeuristic(this.goal);
 				next.setParentPixel(current);
 				next.calculateF(this.goal);

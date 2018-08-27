@@ -7,7 +7,7 @@ public class Pixel {
 	
 	private Terrain terrain = Terrain.UNKNOWN_TERRAIN;
 	
-	private int cost = Integer.MAX_VALUE;
+	private double cost = 1;
 	private double heuristic = 0;
 	private double f = 0;
 		
@@ -39,7 +39,7 @@ public class Pixel {
 		return this.terrain;
 	}
 	
-	public int getCost() {
+	public double getCost() {
 		return this.cost;
 	}
 	
@@ -59,7 +59,7 @@ public class Pixel {
 		this.parentPixel = parentPixel;
 	}
 	
-	public void setCost(int cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 	

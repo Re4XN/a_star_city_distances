@@ -23,22 +23,22 @@ public class Worldmap {
 		
 		if(pixelColor.getRed() == 255 && pixelColor.getGreen() == 0 && pixelColor.getBlue() == 0) {
 			pixel.setTerrain(Terrain.MAJOR_CITY);
-			pixel.setCost(1);
+			pixel.setCost(pixel.getCost() + 0.5);
 		} else if (pixelColor.getRed() == 219 && pixelColor.getGreen() == 170 && pixelColor.getBlue() == 107) {
 			pixel.setTerrain(Terrain.ROAD);
-			pixel.setCost(1);
+			pixel.setCost(pixel.getCost() + 0.5);
 		} else if (pixelColor.getRed() == 0 && pixelColor.getGreen() == 127 && pixelColor.getBlue() == 14) {
 			pixel.setTerrain(Terrain.GRASS);
-			pixel.setCost(5);
+			pixel.setCost(pixel.getCost() + 3);
 		} else if (pixelColor.getRed() == 0 && pixelColor.getGreen() == 148 && pixelColor.getBlue() == 255) {
 			pixel.setTerrain(Terrain.SEA_OR_RIVER);
-			pixel.setCost(30);
+			pixel.setCost(pixel.getCost() + 10);
 		} else if (pixelColor.getRed() == 127 && pixelColor.getGreen() == 51 && pixelColor.getBlue() == 0) {
 			pixel.setTerrain(Terrain.MOUNTAIN);
-			pixel.setCost(60);
+			pixel.setCost(pixel.getCost() + 15);
 		} else {
 			pixel.setTerrain(Terrain.UNKNOWN_TERRAIN);
-			pixel.setCost(Integer.MAX_VALUE);
+			pixel.setCost(Double.MAX_VALUE);
 		}
 	}
 
