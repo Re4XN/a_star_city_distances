@@ -25,10 +25,10 @@ public class AStar {
 		}
 	}
 
-	private Pixel start = null;
-	private Pixel goal = null;
+	private Pixel start;
+	private Pixel goal;
 	
-	private Worldmap worldmap = null;
+	private Worldmap worldmap;
 	
 	public AStar(Pixel start, Pixel goal, Worldmap worldmap) {
 		this.start = start;
@@ -74,8 +74,6 @@ public class AStar {
 		while(!openPixels.isEmpty()) {
 			Pixel current = openPixels.poll();
 			this.worldmap.setPixelTerrain(current);
-
-			System.out.println("WHILE LOOP: " + current.getCost());
 			
 			if(isFinished(current, this.goal))
 				return getPath(current);
