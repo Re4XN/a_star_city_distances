@@ -41,7 +41,6 @@ public class AStar {
 	}
 	
 	private List<Pixel> getPath(Pixel current) {
-
 		List<Pixel> path;
 		
 		if(current.getParentPixel() == null)
@@ -51,14 +50,9 @@ public class AStar {
 		path.add(current);
 		
 		return path;
-		
 	}
 	
 	public List<Pixel> search() {
-		
-		this.worldmap.setPixelTerrain(start);
-		this.worldmap.setPixelTerrain(goal);
-		
 		int[][] directions = new int[][] {
 			new int[] {1, 0},
 			new int[] {1, 1},
@@ -99,9 +93,7 @@ public class AStar {
 				
 				this.worldmap.setPixelTerrain(next);
 				
-				System.out.println("FOR LOOP:" + current.getCost() + " + " + next.getCost());
 				next.setCost(current.getCost() + next.getCost());
-				
 				next.calculateHeuristic(this.goal);
 				next.setParentPixel(current);
 				next.calculateF(this.goal);

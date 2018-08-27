@@ -21,25 +21,39 @@ public class Worldmap {
 		
 		Color pixelColor = new Color(worldmap.getRGB(pixel.getX(), pixel.getY()));
 		
-		if(pixelColor.getRed() == 255 && pixelColor.getGreen() == 0 && pixelColor.getBlue() == 0) {
-			pixel.setTerrain(Terrain.MAJOR_CITY);
+		if(isCity(pixelColor)) {
 			pixel.setCost(pixel.getCost() + 0.5);
-		} else if (pixelColor.getRed() == 219 && pixelColor.getGreen() == 170 && pixelColor.getBlue() == 107) {
-			pixel.setTerrain(Terrain.ROAD);
+		} else if (isRoad(pixelColor)) {
 			pixel.setCost(pixel.getCost() + 0.5);
-		} else if (pixelColor.getRed() == 0 && pixelColor.getGreen() == 127 && pixelColor.getBlue() == 14) {
-			pixel.setTerrain(Terrain.GRASS);
+		} else if (isGrass(pixelColor)) {
 			pixel.setCost(pixel.getCost() + 3);
-		} else if (pixelColor.getRed() == 0 && pixelColor.getGreen() == 148 && pixelColor.getBlue() == 255) {
-			pixel.setTerrain(Terrain.SEA_OR_RIVER);
+		} else if (isRiver(pixelColor)) {
 			pixel.setCost(pixel.getCost() + 10);
-		} else if (pixelColor.getRed() == 127 && pixelColor.getGreen() == 51 && pixelColor.getBlue() == 0) {
-			pixel.setTerrain(Terrain.MOUNTAIN);
+		} else if (isMountain(pixelColor)) {
 			pixel.setCost(pixel.getCost() + 15);
 		} else {
-			pixel.setTerrain(Terrain.UNKNOWN_TERRAIN);
 			pixel.setCost(Double.MAX_VALUE);
 		}
+	}
+	
+	private boolean isCity(Color pixelColor) {
+		return pixelColor.getRed() == 255 && pixelColor.getGreen() == 0 && pixelColor.getBlue() == 0;
+	}
+	
+	private boolean isGrass(Color pixelColor) {
+		return pixelColor.getRed() == 0 && pixelColor.getGreen() == 127 && pixelColor.getBlue() == 14;
+	}
+	
+	private boolean isRoad(Color pixelColor) {
+		return pixelColor.getRed() == 219 && pixelColor.getGreen() == 170 && pixelColor.getBlue() == 107;
+	}
+	
+	private boolean isRiver(Color pixelColor) {
+		return pixelColor.getRed() == 0 && pixelColor.getGreen() == 148 && pixelColor.getBlue() == 255;
+	}
+	
+	private boolean isMountain(Color pixelColor) {
+		return pixelColor.getRed() == 127 && pixelColor.getGreen() == 51 && pixelColor.getBlue() == 0;
 	}
 
 	public BufferedImage getWorldmap() {

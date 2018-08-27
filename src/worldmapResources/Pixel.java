@@ -2,11 +2,9 @@ package worldmapResources;
 
 public class Pixel {
 
-	private int x = 0;
-	private int y = 0;
-	
-	private Terrain terrain = Terrain.UNKNOWN_TERRAIN;
-	
+	private int x;
+	private int y;
+		
 	private double cost = 1;
 	private double heuristic = 0;
 	private double f = 0;
@@ -24,7 +22,7 @@ public class Pixel {
 	
 	@Override
 	public String toString() {
-		return "(" + x + ", " + y + ")[" + cost + ", " + heuristic + ", " + terrain + "]";
+		return "(" + x + ", " + y + ")[" + cost + ", " + heuristic + "]";
 	}
 
 	public int getX() {
@@ -35,9 +33,6 @@ public class Pixel {
 		return y;
 	}
 
-	public Terrain getTerrain() {
-		return this.terrain;
-	}
 	
 	public double getCost() {
 		return this.cost;
@@ -61,10 +56,6 @@ public class Pixel {
 	
 	public void setCost(double cost) {
 		this.cost = cost;
-	}
-	
-	public void setTerrain(Terrain terrain) {
-		this.terrain = terrain;
 	}
 	
 	public void setY(int y) {
