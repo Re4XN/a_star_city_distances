@@ -91,7 +91,7 @@ public class AStar {
 				
 				this.worldmap.setPixelTerrain(next);
 				
-				next.setCost(current.getCost() + next.getCost());
+				next.addCost(current.getCost() + next.getCost());
 				next.calculateHeuristic(this.goal);
 				next.setParentPixel(current);
 				next.calculateF(this.goal);

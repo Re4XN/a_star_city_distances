@@ -11,48 +11,34 @@ import javax.imageio.ImageIO;
 
 public class Worldmap {
 	
-	private static final Map<Color, TerrainHandler> DISPATCHER = populateMap();
+	private static final Map<Color, Double> TERRAIN_COST = new HashMap<>();
+	
+	static {
+		TERRAIN_COST.put(new Color(255, 0, 0), 0.5);		//city
+		TERRAIN_COST.put(new Color(219, 170, 107), 0.5);	//road
+		TERRAIN_COST.put(new Color(0, 127, 14), 3d);		//grass
+		TERRAIN_COST.put(new Color(0, 148, 255), 10d);		//river or sea
+		TERRAIN_COST.put(new Color(127, 51, 0), 15d);		//mountain
+	}
 	
 	private BufferedImage worldmap = null;
-	
-	private double pixelDistance = 8.2372; 
 
-	public Worldmap(File mapImage) throws IOException {
-		worldmap = ImageIO.read(mapImage);
-	}
+	public Worldmap() { }
 
 	public void setPixelTerrain(Pixel pixel) {
-		Color pixelColor = new Color(worldmap.getRGB(pixel.getX(), pixel.getY()));
-		
-		if(DISPATCHER.containsKey(pixelColor)) {
-			DISPATCHER.get(pixelColor).setCost(pixel);
-		} else {
-			pixel.setCost(Double.MAX_VALUE);
-		}
+	    Color pixelColor = new Color(worldmap.getRGB(pixel.getX(), pixel.getY()));
+
+	    Double cost = TERRAIN_COST.getOrDefault(pixelColor, Double.MAX_VALUE);
+	    
+	    pixel.addCost(cost);
 	}
 	
 	public BufferedImage getWorldmap() {
 		return this.worldmap;
 	}
-
-	public double getPixelDistance() {
-		return pixelDistance;
-	}
-
-	public void setPixelDistance(double pixelDistance) {
-		this.pixelDistance = pixelDistance;
-	}
 	
-	private static Map<Color, TerrainHandler> populateMap() {
-		Map<Color, TerrainHandler> dispatcher = new HashMap<>();
-		
-		dispatcher.put(new Color(255, 0, 0), new CityHandler());
-		dispatcher.put(new Color(0, 127, 14), new GrassHandler());
-		dispatcher.put(new Color(219, 170, 107), new RoadHandler());
-		dispatcher.put(new Color(0, 148, 255), new RiverHandler());
-		dispatcher.put(new Color(127, 51, 0), new MountainHandler());
-		
-		return dispatcher;
+	public void setWorldmap(File mapImage) throws IOException {
+		worldmap = ImageIO.read(mapImage);
 	}
 	
 }

@@ -54,8 +54,8 @@ public class Pixel {
 		this.parentPixel = parentPixel;
 	}
 	
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void addCost(double cost) {
+		this.cost += cost;
 	}
 	
 	public void setY(int y) {

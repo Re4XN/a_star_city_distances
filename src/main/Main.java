@@ -25,11 +25,10 @@ public class Main {
 		
 		String file = args[3];
 		
-		Worldmap map = null;
+		Worldmap map = new Worldmap();
 		
 		try {
-			map = new Worldmap(new File(file));
-			map.setPixelDistance(pixelDistance);
+			map.setWorldmap(new File(file));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
