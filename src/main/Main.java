@@ -25,10 +25,6 @@ public class Main {
 		
 		String file = args[3];
 		
-		for(String s : args) {
-			System.out.println(s);
-		}
-		
 		Worldmap map = null;
 		
 		try {
@@ -38,11 +34,10 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		AStar crawler = new AStar(start, goal, map);
-		List<Pixel> path = crawler.search();
+		AStar pathfinder = new AStar(start, goal, map);
+		List<Pixel> path = pathfinder.search();
 		
 		for(Pixel pixel : path) {
-			//System.out.println(pixel);
 			map.getWorldmap().setRGB(pixel.getX(), pixel.getY(), new Color(255, 0, 110).getRGB());
 		}
 		
@@ -54,7 +49,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		System.out.println(path.size());
+		System.out.printf("Path length (in pixels): %d\nPath length (in km): %.2f", path.size(), path.size() * pixelDistance);
 	}
 
 }
